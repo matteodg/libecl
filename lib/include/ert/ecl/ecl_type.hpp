@@ -69,10 +69,15 @@ typedef enum {
 #define ECL_STRING8_LENGTH   8  // 'Normal' 8 characters 'CHAR' type.
 #define ECL_TYPE_LENGTH      4
 
-struct ecl_type_struct {
+typedef struct ecl_type_struct {
   const ecl_type_enum type;
   const size_t element_size;
-};
+
+  ecl_type_struct( ecl_type_enum t, size_t es) :
+    type( t ),
+    element_size( es )
+  {}
+} ecl_data_type;
 
 #ifdef __cplusplus
 
@@ -101,8 +106,6 @@ struct ecl_type_struct {
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-typedef struct ecl_type_struct ecl_data_type;
 
 ecl_data_type      ecl_type_create_from_name(const char *);
 ecl_data_type      ecl_type_create(const ecl_type_enum, const size_t);
